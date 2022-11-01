@@ -24,7 +24,9 @@ function App() {
     fetchWord(data);
   };
 
+  // when clicking on result it will then search that word
   const handleWordClick = (word: string) => {
+    setInputValue(word);
     fetchWord(word);
   };
   return (
