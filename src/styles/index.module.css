@@ -96,9 +96,11 @@ ul {
   display: flex;
 }
 
-p {
+.word_button {
   text-decoration: none;
   list-style: none;
   padding: 0.2em 0;
   margin-left: 1em;
+  cursor: pointer;
+  padding: 0.8em 1.2em;
 }

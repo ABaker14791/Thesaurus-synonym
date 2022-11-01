@@ -1,5 +1,5 @@
 import styles from "./styles/index.module.css";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 type Synonym = {
   word: string;
@@ -17,11 +17,15 @@ function App() {
       .then(setSynonyms);
   };
 
-  //
+  // handle form submittion
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const data = inputValue;
     fetchWord(data);
+  };
+
+  const handleWordClick = (word: string) => {
+    fetchWord(word);
   };
   return (
     <div className="App">
@@ -45,8 +49,12 @@ function App() {
       <ul>
         {synonyms.map((synonym) => (
           <li key={synonym.word} className={styles.word_block}>
-            <p>{synonym.word}</p>
-            <p>{synonym.score}</p>
+            <button
+              onClick={() => handleWordClick(synonym.word)}
+              className={styles.word_button}
+            >
+              {synonym.word}
+            </button>
           </li>
         ))}
       </ul>
