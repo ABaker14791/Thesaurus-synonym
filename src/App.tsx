@@ -1,23 +1,22 @@
 import styles from "./styles/index.module.css";
 import { useState } from "react";
 
-// Using Fetch API
-const fetchWord = async (word: string) => {
-  const res = await fetch(`https://api.datamuse.com/words?ml=${word}`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  if (!res.ok) {
-    throw new Error("Data coud not be fetched!");
-  } else {
-    return console.log(res.json());
-  }
+type Synonym = {
+  word: string;
+  score: number;
 };
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
+  const [synonyms, setSynonyms] = useState<Synonym[]>([]);
+
+  // Using Fetch API
+  const fetchWord = (word: string) => {
+    const res = fetch(`https://api.datamuse.com/words?rel_syn=${word}`)
+      .then((res) => res.json())
+      .then(setSynonyms);
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const data = inputValue;
@@ -43,6 +42,14 @@ function App() {
         />
         <button onClick={handleSubmit}>Search</button>
       </form>
+      <ul>
+        {synonyms.map((synonym) => (
+          <li key={synonym.word} className={styles.word_block}>
+            <p>{synonym.word}</p>
+            <p>{synonym.score}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

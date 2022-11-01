@@ -86,3 +86,19 @@ button:focus-visible {
   border-radius: 4px;
   margin: 0 0 1em 0;
 }
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.word_block {
+  display: flex;
+}
+
+p {
+  text-decoration: none;
+  list-style: none;
+  padding: 0.2em 0;
+  margin-left: 1em;
+}
