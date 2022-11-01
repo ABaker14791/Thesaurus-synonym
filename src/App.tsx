@@ -17,15 +17,15 @@ function App() {
       .then(setSynonyms);
   };
 
-  const handleSubmit = (e: any) => {
+  //
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const data = inputValue;
-
     fetchWord(data);
   };
   return (
     <div className="App">
-      <form action="" className={styles.form}>
+      <form className={styles.form}>
         <h1>Thesaurus.</h1>
         <h2>Enter a word to generate a synonym.</h2>
         <label htmlFor="word-input" className={styles.label}>
